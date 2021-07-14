@@ -1,5 +1,34 @@
 import { useState } from 'react'
-import './ExpenseForm.css'
+import styled from 'styled-components'
+
+const Controls = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+`
+
+const Control = styled.div`
+  label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+`
+
+const Actions = styled.div`
+  text-align: right;
+`
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('')
@@ -35,16 +64,16 @@ const ExpenseForm = (props) => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
+      <Controls>
+        <Control>
           <label>Title</label>
           <input
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
           />
-        </div>
-        <div className="new-expense__control">
+        </Control>
+        <Control>
           <label>Amount</label>
           <input
             type="number"
@@ -53,8 +82,8 @@ const ExpenseForm = (props) => {
             value={enteredAmount}
             onChange={amountChangedHandler}
           />
-        </div>
-        <div className="new-expense__control">
+        </Control>
+        <Control>
           <label>Date</label>
           <input
             type="date"
@@ -63,14 +92,14 @@ const ExpenseForm = (props) => {
             value={enteredDate}
             onChange={dateChangeHandler}
           />
-        </div>
-      </div>
-      <div className="new-expense__actions">
+        </Control>
+      </Controls>
+      <Actions>
         <button type="button" onClick={props.onCancel}>
           Cancel
         </button>
         <button type="submit">Add Expense</button>
-      </div>
+      </Actions>
     </form>
   )
 }
