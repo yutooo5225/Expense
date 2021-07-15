@@ -1,13 +1,22 @@
-import './ExpensesList.css'
+import styled from 'styled-components'
 
 import ExpenseItem from './ExpenseItem'
 
+const ExpList = styled.ul`
+  list-style: none;
+  padding: 0;
+`
+const Fallback = styled.h2`
+  color: white;
+  text-align: center;
+`
+
 const ExpensesList = (props) => {
   if (props.items.length === 0) {
-    return <h2 className="expenses-list__fallback">Found no expenses.</h2>
+    return <Fallback>Found no expenses.</Fallback>
   }
   return (
-    <ul className="expenses-list">
+    <ExpList>
       {props.items.map((expense) => (
         <ExpenseItem
           key={expense.id}
@@ -16,7 +25,7 @@ const ExpensesList = (props) => {
           date={expense.date}
         />
       ))}
-    </ul>
+    </ExpList>
   )
 }
 
